@@ -22,7 +22,17 @@ Person.prototype.getFullName = () => {
 };
 
 // Get Married
+Person.prototype.getsMaried = (newLastName) => {
+  this.lastName = newLastName;
+};
+merry.getsMaried("Smith");
 Person.prototype;
 
 const john = new Person("John", "Doe", "8-12-90");
 const merry = new Person("Merry", "Johnson", "March 20 1978");
+
+// hasOwnProperty
+merry.hasOwnProperty("firstName"); // true
+merry.hasOwnProperty("getFullName"); // false
+
+//ghfrf
