@@ -1,31 +1,26 @@
-// document.querySelector("clear-tasks").addEventListener("click", function (e) {
-//     console.log('clicked')
+const personPrototypes = {
+  greeting: function () {
+    return `Hello there ${this.firstName} ${this.lastName}`;
+  },
+  getsMarried: function (newLastName) {
+    this.lastName = newLastName;
+  },
+};
 
-//     e.preventDefault() // pokud mam nejaky href u buttonu
-// });
+const mery = Object.create(personPrototypes);
+mery.firstName = "Mery";
+mery.lastName = "Smith";
+mery.age = 30;
 
-document.querySelector("clear-tasks").addEventListener("click", onclick);
+mery.getsMarried("Smith2");
 
-function onclick(e) {
-  // console.log('clicked')
+console.log(mery.greeting());
 
-  // Event target element
-  e.target; // actual element (html)
-  e.target.id;
-  e.target.className;
-  e.target.classList;
+// Another way
+const brad = Object.create(personPrototypes, {
+  firstName: { value: "Brad" },
+  lastName: { value: "Smith" },
+  age: { value: 22 },
+});
 
-  // Event type
-  e.type; // click
-
-  // Timestamp
-  e.timeStamp;
-
-  // Coords event relative to the window
-  e.clientY;
-  e.clientX;
-
-  // Coords event relative to the element
-  e.offsetY;
-  e.offsetX;
-}
+console.log(brad.greeting());
