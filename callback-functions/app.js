@@ -1,58 +1,43 @@
-// WINDOW METHODS / OBJECTS / PROPERTIES
+const posts = [
+  { title: "Post one", body: "This is post one" },
+  { title: "Post two", body: "This is post two" },
+];
 
-// ALERT
-alert("hello");
+// function createPosts(post) {
+//   setTimeout(() => {
+//     posts.push(post);
+//   }, 2000);
+// }
 
-// PROMPT - takes and input (input field)
-const input = prompt();
+// function getPosts() {
+//   setTimeout(() => {
+//     let output = "";
+//     posts.forEach((post) => {
+//       output += `<li>${post.title}</li>`;
+//     });
+//     document.body.innerHTML = output;
+//   }, 1000);
+// }
 
-alert(input);
+// createPosts({ title: "Post three", body: "This is post three" });
 
-// CONFIRM
-if (confirm("Are you sure?")) {
-  console.log("YES");
-} else {
-  console.log("NO");
+// getPosts();
+
+function createPosts(post, callback) {
+  setTimeout(() => {
+    posts.push(post);
+    callback();
+  }, 2000);
 }
 
-//
+function getPosts() {
+  setTimeout(() => {
+    let output = "";
+    posts.forEach((post) => {
+      output += `<li>${post.title}</li>`;
+    });
+    document.body.innerHTML = output;
+  }, 1000);
+}
 
-let val;
-
-// Outer height and width
-val = window.outerHeight();
-val = window.outerWidth();
-
-// Inner height and width
-val = window.innerHeight();
-val = window.innerWidth();
-
-// Scrroll points
-val = window.scrollY();
-val = window.scrollX();
-
-// Location Object
-val = window.location;
-val = window.location.hostname;
-val = window.location.port;
-val = window.location.href;
-val = window.location.search;
-
-// Redirect
-window.location.href = "http://google.com";
-
-// Reload page
-window.location.reload();
-
-// history object
-window.history.go(-1); // goes to the page I was before (back button in browser)
-val = window.history.length; // how many sites I have visited
-
-// Navigator object
-val = window.navigator;
-val = window.navigator.appName;
-val = window.navigator.appVersion;
-val = window.navigator.userAgent;
-val = window.navigator.platform;
-val = window.navigator.vendor;
-val = window.navigator.language;
+createPosts({ title: "Post three", body: "This is post three" }, getPosts);
