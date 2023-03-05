@@ -22,6 +22,9 @@ const ItemCtrl = (function () {
 
   // Public methods
   return {
+    getItems: function () {
+      return data.items;
+    },
     logData: function () {
       return data;
     },
@@ -30,16 +33,66 @@ const ItemCtrl = (function () {
 
 //UI Controller
 const UICtrl = (function () {
+  const UISelectors = {
+    itemList: "#item-list",
+    addBtn: ".add-btn",
+  };
   // Public methods
-  return {};
+  return {
+    populateItemList: function (items) {
+      let html = "";
+
+      items.forEach((item) => {
+        html += `
+        <li class="collection-item" id="item-${item.id}">
+        <strong>${item.name}: </strong> <em>${item.calories} Calories</em>
+        <a href="#" class="secondary-content">
+          <i class="edit-item  fa fa-pencil"></i>
+        </a>
+      </li>
+        `;
+      });
+
+      // Insert list items
+      document.querySelector(UISelectors.itemList).innerHTML = html;
+    },
+    getSelectors: function () {
+      return UISelectors;
+    },
+  };
 })();
 
 // App Controler
 const App = (function (ItemCtrl, UICtrl) {
+  // Load event listeners
+  const loadEventListeners = function () {
+    // Get UI selectors
+    const UISelectors = UICtrl.getSelectors();
+
+    // Add item event
+    document
+      .querySelector(UISelectors.addBtn)
+      .addEventListener("click", itemAddSubmit);
+  };
+
+  // Add item submit\
+  const itemAddSubmit = function (e) {
+    console.log("add");
+
+    e.preventDefault();
+  };
+
   // Public methods
   return {
     init: function () {
-      console.log("init");
+      // Fetch items from data structure
+      const items = ItemCtrl.getItems();
+
+      // Populate list with items
+      UICtrl.populateItemList(items);
+
+      // Load event listeners
+      loadEventListeners();
     },
   };
 })(ItemCtrl, UICtrl);
