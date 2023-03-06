@@ -25,7 +25,25 @@ const ItemCtrl = (function () {
     getItems: function () {
       return data.items;
     },
-    addItem(name, calories) {},
+    addItem(name, calories) {
+      let ID;
+      if (data.items.length > 0) {
+        ID = data.items[data.items.length - 1].id + 1;
+      } else {
+        ID = 0;
+      }
+
+      // Calories to number
+      caloris = parseInt(calories);
+
+      // Create new item
+      newItem = new Item(ID, name, calories);
+
+      // Add to items array
+      data.items.push(newItem);
+
+      return newItem;
+    },
     logData: function () {
       return data;
     },
